@@ -25,9 +25,7 @@ This repository is a template for a data science project. This is the project st
 │   ├── final                       # data after training the model
 │   ├── processed                   # data after processing
 │   ├── raw                         # raw data
-│   └── raw.dvc                     # DVC file of data/raw
 ├── docs                            # documentation for your project
-├── dvc.yaml                        # DVC pipeline
 ├── .flake8                         # configuration for flake8 - a Python formatter tool
 ├── .gitignore                      # ignore files that cannot commit to Git
 ├── Makefile                        # store useful commands to set up the environment
