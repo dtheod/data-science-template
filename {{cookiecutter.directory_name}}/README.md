@@ -48,43 +48,17 @@ make activate
 make setup
 ```
 
+## To persist the output of Prefect's flow, run 
+```bash
+export PREFECT__FLOWS__CHECKPOINTING=true
+```
+
 ## Install new packages
 To install new PyPI packages, run:
 ```bash
 poetry add <package-name>
 ```
 
-## Run the entire pipeline
-To run the entire pipeline, type:
-```bash
-dvc repo
-```
-
-## Version your data
-Read [this article](https://towardsdatascience.com/introduction-to-dvc-data-version-control-tool-for-machine-learning-projects-7cb49c229fe0) on how to use DVC to version your data.
-
-Basically, you start with setting up a remote storage. The remote storage is where your data is stored. You can store your data on DagsHub, Google Drive, Amazon S3, Azure Blob Storage, Google Cloud Storage, Aliyun OSS, SSH, HDFS, and HTTP.
-
-```bash
-dvc remote add -d remote <REMOTE-URL>
-```
-
-Commit the config file:
-```bash
-git commit .dvc/config -m "Configure remote storage"
-```
-
-Push the data to remote storage:
-```bash
-dvc push 
-```
-
-Add and push all changes to Git:
-```bash
-git add .
-git commit -m 'commit-message'
-git push origin <branch>
-```
 
 # Auto-generate API documentation
 
