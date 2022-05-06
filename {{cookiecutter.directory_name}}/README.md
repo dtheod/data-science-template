@@ -60,6 +60,11 @@ To install new PyPI packages, run:
 poetry add <package-name>
 ```
 
+## Install Dev new packages
+To install new Dev PyPI packages, run:
+```bash
+poetry add -D <package-name>
+```
 
 # Auto-generate API documentation
 
