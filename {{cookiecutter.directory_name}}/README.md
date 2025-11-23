@@ -8,6 +8,8 @@
 {%- if cookiecutter.dependency_manager == "uv" %}
 * [uv](https://github.com/astral-sh/uv): Ultra-fast Python package installer and resolver
 {%- endif %}
+* [FastAPI](https://fastapi.tiangolo.com/): Modern, fast (high-performance), web framework for building APIs
+* [Docker](https://www.docker.com/): Platform for developing, shipping, and running applications
 
 ## Project Structure
 
@@ -27,6 +29,8 @@
 │   └── raw                         # raw data
 ├── docs                            # documentation for your project
 ├── .gitignore                      # ignore files that cannot commit to Git
+├── Dockerfile                      # Dockerfile for building the image
+├── docker-compose.yaml             # Docker Compose file for running the service
 ├── models                          # store models
 ├── notebooks                       # store notebooks
 {%- if cookiecutter.dependency_manager == "pip" %}
@@ -39,6 +43,7 @@
 ├── README.md                       # describe your project
 ├── src                             # store source code
 │   ├── __init__.py                 # make src a Python module
+│   ├── app.py                      # FastAPI application
 │   ├── process.py                  # process data before training model
 │   ├── train_model.py              # train model
 │   └── utils.py                    # store helper functions
@@ -261,3 +266,43 @@ pdoc src --http localhost:8080
 {%- endif %}
 
 The documentation will be generated from your docstrings and type hints in your Python files. The static documentation will be saved in the `docs` directory, while the live server allows you to view the documentation with hot-reloading as you make changes.
+
+## Run API Server
+
+You can run the API server locally using `uvicorn`:
+
+{%- if cookiecutter.dependency_manager == "uv" %}
+```bash
+uv run uvicorn src.app:app --reload
+```
+{%- else %}
+```bash
+uvicorn src.app:app --reload
+```
+{%- endif %}
+
+The API will be available at `http://localhost:8000`. You can access the automatic API documentation at `http://localhost:8000/docs`.
+
+## Docker
+
+You can also run the application using Docker.
+
+1. Build and run the container using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+The API will be available at `http://localhost:8000`.
+
+2. Alternatively, build the image manually:
+
+```bash
+docker build -t {{ cookiecutter.directory_name }} .
+```
+
+3. Run the container:
+
+```bash
+docker run -p 8000:8000 {{ cookiecutter.directory_name }}
+```
