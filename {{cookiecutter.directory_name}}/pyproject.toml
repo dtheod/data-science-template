@@ -1,23 +1,4 @@
-{%- if cookiecutter.dependency_manager == "poetry" %}
-[tool.poetry]
-name = "{{ cookiecutter.directory_name }}"
-version = "0.1.0"
-description = ""
-authors = ["{{ cookiecutter.author_name }}"]
-
-[tool.poetry.dependencies]
-python = "{{ cookiecutter.compatible_python_versions }}"
-hydra-core = "^1.3.2"
-
-[tool.poetry.group.dev.dependencies]
-pdoc3 = "^0.11.6"
-pytest = "^8.3.5"
-pre-commit = "^4.2.0"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-{% elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 [project]
 name = "{{ cookiecutter.directory_name }}"
 version = "0.1.0"
@@ -27,7 +8,10 @@ authors = [
 ]
 requires-python = "{{ cookiecutter.compatible_python_versions }}"
 dependencies = [
-    "hydra-core>=1.3.2"
+    "hydra-core>=1.3.2",
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "pydantic>=2.6.0"
 ]
 
 [project.optional-dependencies]
@@ -45,7 +29,10 @@ authors = [
     { name = "{{ cookiecutter.author_name }}" }
 ]
 dependencies = [
-    "hydra-core>=1.3.2"
+    "hydra-core>=1.3.2",
+    "fastapi>=0.109.0",
+    "uvicorn>=0.27.0",
+    "pydantic>=2.6.0"
 ]
 
 [project.optional-dependencies]

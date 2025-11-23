@@ -4,7 +4,6 @@
     "author_name": "Your Name",
     "dependency_manager": [
         "pip",
-        "poetry",
         "uv"
     ],
     "compatible_python_versions": ">=3.11"

@@ -5,9 +5,7 @@
 * [hydra](https://hydra.cc/): Manage configuration files - [article](https://codecut.ai/stop-hard-coding-in-a-data-science-project-use-configuration-files-instead/)
 * [pdoc](https://github.com/pdoc3/pdoc): Automatically create an API documentation for your project
 * [pre-commit plugins](https://pre-commit.com/): Automate code reviewing formatting
-{%- if cookiecutter.dependency_manager == "poetry" %}
-* [Poetry](https://towardsdatascience.com/how-to-effortlessly-publish-your-python-package-to-pypi-using-poetry-44b305362f9f): Dependency management - [article](https://codecut.ai/poetry-a-better-way-to-manage-python-dependencies/)
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 * [uv](https://github.com/astral-sh/uv): Ultra-fast Python package installer and resolver
 {%- endif %}
 
@@ -33,9 +31,6 @@
 ├── notebooks                       # store notebooks
 {%- if cookiecutter.dependency_manager == "pip" %}
 ├── pyproject.toml                  # Configure black
-{%- elif cookiecutter.dependency_manager == "poetry" %}
-├── .pre-commit-config.yaml         # configurations for pre-commit
-├── pyproject.toml                  # dependencies for poetry
 {%- elif cookiecutter.dependency_manager == "uv" %}
 ├── .pre-commit-config.yaml         # configurations for pre-commit
 ├── .python-version                 # specify Python version for the project
@@ -87,41 +82,7 @@ git push -u origin main
 
 ## Set up the environment
 
-{%- if cookiecutter.dependency_manager == "poetry" %}
-1. Install [Poetry](https://python-poetry.org/docs/#installation)
-
-2. Activate the virtual environment:
-
-```bash
-poetry shell
-```
-
-3. Install dependencies:
-
-- To install all dependencies from pyproject.toml, run:
-
-```bash
-poetry install
-```
-
-- To install only production dependencies, run:
-
-```bash
-poetry install --only main
-```
-
-Note: To follow the rest of the instructions in this README (including running tests, generating documentation, and using pre-commit hooks), it is recommended to install all dependencies using `poetry install`.
-
-4. Run Python scripts:
-
-```bash
-# Run directly with poetry
-poetry run python src/process.py
-
-# Or after activating the virtual environment
-python src/process.py
-```
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 1. Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
 
 2. Install dependencies:
@@ -192,12 +153,7 @@ python3 src/process.py
 
 ## Set up pre-commit hooks
 
-{%- if cookiecutter.dependency_manager == "poetry" %}
-Set up pre-commit:
-```bash
-poetry run pre-commit install
-```
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 Set up pre-commit:
 ```bash
 uv run pre-commit install
@@ -222,11 +178,7 @@ The project uses Hydra to manage configurations. You can view and modify these c
 
 To view available configurations:
 
-{%- if cookiecutter.dependency_manager == "poetry" %}
-```bash
-poetry run python src/process.py --help
-```
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 ```bash
 uv run src/process.py --help
 ```
@@ -265,11 +217,7 @@ data:
 
 To override configurations (for example, changing the input data file):
 
-{%- if cookiecutter.dependency_manager == "poetry" %}
-```bash
-poetry run python src/process.py data.raw=sample2.csv
-```
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 ```bash
 uv run src/process.py data.raw=sample2.csv
 ```
@@ -290,17 +238,7 @@ You can override any configuration value shown in the help output. Multiple over
 
 ## Auto-generate API documentation
 
-{%- if cookiecutter.dependency_manager == "poetry" %}
-Generate static documentation:
-```bash
-poetry run pdoc src -o docs
-```
-
-Start documentation server (available at http://localhost:8080):
-```bash
-poetry run pdoc src --http localhost:8080
-```
-{%- elif cookiecutter.dependency_manager == "uv" %}
+{%- if cookiecutter.dependency_manager == "uv" %}
 Generate static documentation:
 ```bash
 uv run pdoc src -o docs
